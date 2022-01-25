@@ -1,5 +1,5 @@
 <?php 
-	include('config/db_donnect.php');
+	include('config/db_connect.php');
 
 	// write query for all pizzas, standard sql
 	$sql = 'SELECT title, ingredients, id FROM pizzas ORDER BY created_at';
@@ -47,7 +47,7 @@
 							</ul>
 						</div>
 						<div class="card-action right-align">
-							<a class="brand-text" href="#">more info</a>
+							<a class="brand-text" href="details.php?id=<?php echo $pizza['id'] ?>">more info</a>
 						</div>
 					</div>
 				</div>

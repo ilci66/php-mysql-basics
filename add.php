@@ -1,6 +1,7 @@
 <?php 
 	
-	include('config/db_donnect.php');
+	include('config/db_connect.php');
+	// include('config/db_connect.php');
 
 	$email = $title = $ingredients = '';
 	$errors = array('email' => '', 'title' => '', 'ingredients' => '');
