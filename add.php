@@ -1,7 +1,6 @@
-<?php 
-	
+<?php
+
 	include('config/db_connect.php');
-	// include('config/db_connect.php');
 
 	$email = $title = $ingredients = '';
 	$errors = array('email' => '', 'title' => '', 'ingredients' => '');
@@ -41,9 +40,7 @@
 		if(array_filter($errors)){
 			//echo 'errors in form';
 		} else {
-			//echo 'form is valid, now add to the database';
-			
-			// Again a protective measure to prevent injection of sql code by the user
+			// escape sql chars
 			$email = mysqli_real_escape_string($conn, $_POST['email']);
 			$title = mysqli_real_escape_string($conn, $_POST['title']);
 			$ingredients = mysqli_real_escape_string($conn, $_POST['ingredients']);
@@ -59,8 +56,6 @@
 				echo 'query error: '. mysqli_error($conn);
 			}
 
-
-			header('Location: index.php');
 		}
 
 	} // end POST check
@@ -70,11 +65,11 @@
 <!DOCTYPE html>
 <html>
 	
-	<?php include('header-footer/header.php'); ?>
+	<?php include('templates/header.php'); ?>
 
 	<section class="container grey-text">
 		<h4 class="center">Add a Pizza</h4>
-		<form class="white" action="add.php" method="POST">
+		<form class="white" action="<?php echo $_SERVER['PHP_SELF'] ?>" method="POST">
 			<label>Your Email</label>
 			<input type="text" name="email" value="<?php echo htmlspecialchars($email) ?>">
 			<div class="red-text"><?php echo $errors['email']; ?></div>
@@ -90,6 +85,6 @@
 		</form>
 	</section>
 
-	<?php include('header-footer/footer.php'); ?>
+	<?php include('templates/footer.php'); ?>
 
 </html>
